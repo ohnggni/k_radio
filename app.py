@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response, abort
+from flask import Flask, render_template, request, Response, abort, send_from_directory
 import subprocess
 import shlex
 import json
@@ -14,6 +14,13 @@ logging.basicConfig(level=logging.DEBUG)
 with open('radio-list.json', 'r') as file:
     radio_urls = json.load(file)
 
+# EPG 및 매칭 데이터 로드
+EPG_URL = '/epg/xmltv.xml'
+
+# 매칭 JSON 파일 로드
+with open('match.json', 'r') as f:
+    match_list = json.load(f)
+    
 # 방송사별 URL을 가져오는 함수
 def get_stream_url(key):
     logging.debug(f"Fetching URL for key: {key}")
@@ -184,6 +191,16 @@ def generate_stream(url, atype):
     response = Response(generate_with_error(), content_type='audio/aac')  # 브라우저 호환을 위한 AAC 형식
     response.headers.add('Access-Control-Allow-Origin', '*')  # CORS 헤더 추가
     return response
+
+# match.json 파일 제공
+@app.route('/match.json')
+def serve_match_json():
+    return send_from_directory('/app', 'match.json')
+
+# xmltv.xml 파일 제공
+@app.route('/epg/xmltv.xml')
+def serve_epg_file():
+    return send_from_directory('/epg', 'xmltv.xml')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3005, debug=True)
