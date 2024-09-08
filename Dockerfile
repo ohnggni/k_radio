@@ -7,10 +7,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     libavcodec-extra \
     iputils-ping \
+    tzdata \
     dnsutils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+ENV TZ=Asia/Seoul
 WORKDIR /app
 
 # 필요한 Python 패키지 설치
