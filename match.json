@@ -1,0 +1,100 @@
+{
+    "channels": [
+      {
+        "title": "EBS FM",
+        "key": "ebsfm",
+        "image": "ebs_fm.png",
+        "epg_channel_name": "라디오 EBS FM.daum"
+      },
+      {
+        "title": "CBS Music",
+        "key": "cbs_music_fm",
+        "image": "cbs_music.png",
+        "epg_channel_name": "라디오 CBS음악FM.daum"
+      },
+      {
+        "title": "KBS Classic",
+        "key": "kbs_classic",
+        "image": "kbs_classic.png",
+        "epg_channel_name": "라디오 ClassicFM.daum"
+      },
+      {
+        "title": "KBS 1Radio",
+        "key": "kbs_1radio",
+        "image": "kbs1.png",
+        "epg_channel_name": "라디오 KBS1R.daum"
+      },
+      {
+        "title": "YTN",
+        "key": "ytn",
+        "image": "ytn.png",
+        "epg_channel_name": "라디오 YTNNewsFM.daum"
+      },
+      {
+        "title": "TBS",
+        "key": "tbsfm",
+        "image": "tbs.png",
+        "epg_channel_name": "라디오 TBSFM.daum"
+      },
+      {
+        "title": "TBN",
+        "key": "tbnfm",
+        "image": "tbn.png",
+        "epg_channel_name": "라디오 TBN.daum"
+      },
+      {
+        "title": "iTV",
+        "key": "ifm",
+        "image": "itv.png",
+        "epg_channel_name": "라디오 경인방송.daum"
+      },
+      {
+        "title": "KBS Happy",
+        "key": "kbs_happy",
+        "image": "kbs_happy.png",
+        "epg_channel_name": "라디오 HappyFM.daum"
+      },
+      {
+        "title": "CBS FM",
+        "key": "cbs_fm",
+        "image": "cbs.png",
+        "epg_channel_name": "라디오 CBS표준FM.daum"
+      },
+      {
+        "title": "KBS Cool",
+        "key": "kbs_cool",
+        "image": "kbs_cool.png",
+        "epg_channel_name": "라디오 KBS CoolFM.daum"
+      },
+      {
+        "title": "KBS 3Radio",
+        "key": "kbs_3radio",
+        "image": "kbs3.png",
+        "epg_channel_name": "라디오 KBS3R.daum"
+      },
+      {
+        "title": "SBS Power",
+        "key": "sbs_power",
+        "image": "sbs_power.png",
+        "epg_channel_name": "라디오 SBS파워FM.daum"
+      },
+      {
+        "title": "SBS Love",
+        "key": "sbs_love",
+        "image": "sbs_love.png",
+        "epg_channel_name": "라디오 SBS러브FM.daum"
+      },
+      {
+        "title": "MBC FM",
+        "key": "mbc_fm",
+        "image": "mbc_fm.png",
+        "epg_channel_name": "라디오 MBC표준FM.daum"
+      },
+      {
+        "title": "MBC FM4U",
+        "key": "mbc_fm4u",
+        "image": "mbc_fm4u.png",
+        "epg_channel_name": "라디오 MBCFM4U.daum"
+      }
+    ]
+  }
