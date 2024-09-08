@@ -10,8 +10,10 @@ services:
       - "3005:3005"
     volumes:
       - .:/app
+      - ./epg:/epg  # /epg 폴더를 컨테이너 내로 마운트
     environment:
       - FLASK_DEBUG=1  # Flask 디버그 모드 활성화
+      - TZ=Asia/Seoul
     dns:
       - 8.8.8.8
       - 8.8.4.4
