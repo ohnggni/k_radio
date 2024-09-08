@@ -1,24 +1,19 @@
 body {
-    font-family: 'Playpen Sans', cursive;
+    font-family: 'Jua', cursive;
     background-color: #F7F2E0;
 }
 
 h4 {
     max-width: 250px !important;
-    font-family: 'Playpen Sans', cursive;
+    font-family: 'Jua', cursive;
     /* 원하는 글꼴로 변경 가능 */
     font-weight: bold;
     text-align: left;
     font-size: 26px;
     color: #585858;
 
-    padding: 8px 2px 2px 2px;
-    /*border-radius: 8px;
-    /* 모서리 둥글게 */
-    /*box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    /* 상자 그림자 효과 */
-    /*margin: 0px 0;
-    /* 위아래 여백 추가 */
+    padding-bottom: 0px; /* 하단 패딩을 0으로 설정 */
+    margin-bottom: 4px; /* 하단 마진을 줄여 간격 조정 */
 }
 
 table {
@@ -28,7 +23,6 @@ table {
 td img {
     opacity: 0.7;
     /* 이미지를 약간 투명하게 만듭니다. */
-
 }
 
 td img:hover {
@@ -40,34 +34,49 @@ td img:hover {
     /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
 }
 
-/* 기존 스타일 수정 */
 .playing-info {
-    font-family: 'Playpen Sans', cursive;
+    font-family: 'Jua', cursive;
     color: #F2F2F2;
     background-color: gray;
     max-width: 250px !important;
-    overflow: hidden;
     border: 1px solid #bbb;
     border-radius: 5px;
     display: flex;
-    align-items: center;
-    padding: 3px 10px 3px 10px;
-    font-size: 10px;
-    height: 25px; /* 상태바 높이 설정 */
+    flex-direction: column;
+    align-items: stretch; /* 수평으로 채널 정보를 확장 */
+    padding: 5px 10px; /* padding을 줄여 여백을 최소화 */
+    font-size: 12px;
+    height: auto;
 }
 
 .playing-logo {
-    width: 12px;
-    height: 12px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .playing-status {
-    font-family: 'Playpen Sans', cursive;
-    margin-left: auto;
+    font-family: 'Jua', cursive;
+    margin-left: 0; /* 왼쪽 정렬로 변경 */
     color: #F2F2F2;
-    /*font-style: italic;*/
-    font-size: 8px;
+    font-size: 12px;
+}
+
+#qualitySelect {
+    background-color: gray;
+    color: #F2F2F2;
+    font-family: 'Jua', cursive;
+    font-size: 12px;
+    border: none;
+    padding: 0;
+    height: auto;
+    width: auto;
+    appearance: none;
+    margin-left: auto; /* 드롭다운 메뉴를 오른쪽으로 고정 */
+}
+
+#qualitySelect option {
+    background-color: gray;
+    color: #F2F2F2;
+    font-size: 12px;
 }
 
 /* 오디오 요소의 높이를 상태바 높이와 동일하게 설정 */
@@ -77,26 +86,6 @@ td img:hover {
     /*margin-left: 10px; /* 상태바와의 간격 조정 */
 }
 
-/* 드롭다운 메뉴 스타일 */
-#qualitySelect {
-    background-color: gray; /* 상태 바 배경색과 동일하게 설정 */
-    color: #F2F2F2; /* 텍스트 색상 일치 */
-    font-family: 'Playpen Sans', cursive;
-    font-size: 8px; /* 텍스트 크기를 줄여서 상태 바와 일치시킴 */
-    border: none; /* 테두리를 제거하여 깔끔하게 */
-    padding: 0;
-    height: auto; /* 높이를 자동으로 설정 */
-    width: auto; /* 너비를 자동으로 설정 */
-    margin-left: 5px; /* 드롭다운 메뉴와 이전 요소 사이의 여백 추가 */
-    appearance: none; /* 기본 브라우저 스타일 제거 */
-}
-
-#qualitySelect option {
-    background-color: gray; /* 드롭다운 항목 배경색 동일하게 설정 */
-    color: #F2F2F2; /* 항목 텍스트 색상 동일하게 설정 */
-    font-size: 8px; /* 항목 텍스트 크기 일치 */
-}
-
 .bi-arrow-clockwise {
     cursor: pointer; /* 마우스 커서를 손가락 모양으로 변경 */
     transition: transform 0.2s; /* 클릭 시 회전 애니메이션 추가 */
@@ -104,4 +93,3 @@ td img:hover {
 .bi-arrow-clockwise:hover {
     transform: rotate(90deg); /* 호버 시 회전 효과 */
 }
-
