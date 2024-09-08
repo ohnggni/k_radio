@@ -20,13 +20,20 @@ document.getElementById('qualitySelect').addEventListener('change', function (ev
     }
 });
 
-// 채널 로고를 클릭할 때 호출되는 함수
+// 유지 및 수정: 채널 로고를 클릭할 때 호출되는 함수
 function onChannelLogoClick(key, title, artist, image) {
     currentChannelKey = key;  // 클릭된 채널의 key 값으로 설정
     currentChannelTitle = title; // 클릭된 채널의 title 값으로 설정
     currentArtist = artist; // 클릭된 채널의 artist 값으로 설정
     currentImage = image; // 클릭된 채널의 이미지 값으로 설정
     changeAudioSource(`radio?keys=${key}&token=homeassistant&atype=${currentQuality}`, key, title, artist, image);
+    
+    // 추가: EPG 정보 업데이트 함수 호출
+    if (typeof displayEPGInfo === 'function') {
+        displayEPGInfo(key); // epg.js의 displayEPGInfo 호출
+    } else {
+        console.warn('displayEPGInfo function not found');
+    }
 }
 
 // 채널 URL을 설정하고 재생을 처리하는 함수
@@ -45,7 +52,7 @@ function changeAudioSource(src, key, title, artist, image) {
 
     // 재생 상태와 로고, 채널 이름 업데이트
     playingChannelElement.textContent = title;
-    playingChannelElement.style.fontWeight = 'bold'; // Channel명을 bold로 설정
+    //playingChannelElement.style.fontWeight = 'bold'; // Channel명을 bold로 설정
     playingLogoElement.src = image;
     playingStatusElement.textContent = "playing"; // Play 기호
     playingStatusElement.style.display = 'inline'; // "재생 중" 문구 보이기
