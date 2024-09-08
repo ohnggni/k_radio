@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: korea_radio
+    ports:
+      - "3005:3005"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_DEBUG=1  # Flask 디버그 모드 활성화
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
