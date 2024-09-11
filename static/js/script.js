@@ -3,6 +3,7 @@ const audioElement = document.getElementById('globalAudioPlayer');
 const playingStatusElement = document.querySelector('.playing-status');
 const playingChannelElement = document.getElementById('playingChannel');
 const playingLogoElement = document.getElementById('playingLogo');
+const serverIp = process.env.SERVER_IP || 'localhost'; // 환경 변수에서 서버 IP 가져오기, 기본값은 'localhost'
 
 // 현재 선택된 채널과 음질 상태 저장
 let currentChannelKey = '';  // 현재 재생 중인 채널의 key 값
@@ -16,7 +17,7 @@ document.getElementById('qualitySelect').addEventListener('change', function (ev
     currentQuality = event.target.value; // 현재 선택된 음질 업데이트
     if (currentChannelKey) {
         // 현재 재생 중인 채널이 있는 경우, 새 음질로 다시 재생
-        changeAudioSource(`https://hrsv.ohnggni.cc/radio?keys=${currentChannelKey}&token=homeassistant&atype=${currentQuality}`, currentChannelKey, currentChannelTitle, currentArtist, currentImage);
+        changeAudioSource(`http://${serverIp}:3005/radio?keys=${currentChannelKey}&token=homeassistant&atype=${currentQuality}`, currentChannelKey, currentChannelTitle, currentArtist, currentImage);
     }
 });
 
@@ -27,7 +28,7 @@ function onChannelLogoClick(key, title, artist, image) {
     currentChannelTitle = title; // 클릭된 채널의 title 값으로 설정
     currentArtist = artist; // 클릭된 채널의 artist 값으로 설정
     currentImage = image; // 클릭된 채널의 이미지 값으로 설정
-    changeAudioSource(`https://hrsv.ohnggni.cc/radio?keys=${key}&token=homeassistant&atype=${currentQuality}`, key, title, artist, image);
+    changeAudioSource(`http://${serverIp}:3005/radio?keys=${key}&token=homeassistant&atype=${currentQuality}`, key, title, artist, image);
     
     // 추가: EPG 정보 업데이트 함수 호출
     if (typeof displayEPGInfo === 'function') {
