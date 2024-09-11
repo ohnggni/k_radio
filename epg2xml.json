@@ -1,0 +1,78 @@
+{
+  "GLOBAL": {
+    "ENABLED": true,
+    "FETCH_LIMIT": 2,
+    "ID_FORMAT": "{ServiceId}.{Source.lower()}",
+    "ADD_REBROADCAST_TO_TITLE": false,
+    "ADD_EPNUM_TO_TITLE": true,
+    "ADD_DESCRIPTION": true,
+    "ADD_XMLTV_NS": false,
+    "GET_MORE_DETAILS": false,
+    "ADD_CHANNEL_ICON": true,
+    "HTTP_PROXY": null
+  },
+  "KT": {
+    "MY_CHANNELS": []
+  },
+  "LG": {
+    "MY_CHANNELS": []
+  },
+  "SK": {
+    "MY_CHANNELS": []
+  },
+  "DAUM": {
+    "MY_CHANNELS": [
+      { "Name": "ClassicFM", "ServiceId": "라디오 ClassicFM", "Category": "라디오" },
+      { "Name": "KBS CoolFM", "ServiceId": "라디오 KBS CoolFM", "Category": "라디오" },
+      { "Name": "MBCFM4U", "ServiceId": "라디오 MBCFM4U", "Category": "라디오" },
+      { "Name": "MBC표준FM", "ServiceId": "라디오 MBC표준FM", "Category": "라디오" },
+      { "Name": "SBS파워FM", "ServiceId": "라디오 SBS파워FM", "Category": "라디오" },
+      { "Name": "SBS러브FM", "ServiceId": "라디오 SBS러브FM", "Category": "라디오" },
+      { "Name": "TBSFM", "ServiceId": "라디오 TBSFM", "Category": "라디오" },
+      { "Name": "(R)원음방송", "ServiceId": "라디오 (R)원음방송", "Category": "라디오" },
+      { "Name": "Arirang", "ServiceId": "라디오 Arirang", "Category": "라디오" },
+      { "Name": "BBS불교방송", "ServiceId": "라디오 BBS불교방송", "Category": "라디오" },
+      { "Name": "CBS음악FM", "ServiceId": "라디오 CBS음악FM", "Category": "라디오" },
+      { "Name": "CBS표준FM", "ServiceId": "라디오 CBS표준FM", "Category": "라디오" },
+      { "Name": "EBS FM", "ServiceId": "라디오 EBS FM", "Category": "라디오" },
+      { "Name": "HappyFM", "ServiceId": "라디오 HappyFM", "Category": "라디오" },
+      { "Name": "KBS1R", "ServiceId": "라디오 KBS1R", "Category": "라디오" },
+      { "Name": "KBS3R", "ServiceId": "라디오 KBS3R", "Category": "라디오" },
+      { "Name": "KBSWorldRadio", "ServiceId": "라디오 KBSWorldRadio", "Category": "라디오" },
+      { "Name": "KBS한민족", "ServiceId": "라디오 KBS한민족", "Category": "라디오" },
+      { "Name": "KFN Radio", "ServiceId": "라디오 KFN Radio", "Category": "라디오" },
+      { "Name": "SBS 고릴라라디오 M", "ServiceId": "라디오 SBS 고릴라라디오 M", "Category": "라디오" },
+      { "Name": "TBN", "ServiceId": "라디오 TBN", "Category": "라디오" },
+      { "Name": "TBN(강원)", "ServiceId": "라디오 TBN(강원)", "Category": "라디오" },
+      { "Name": "TBN(경남)", "ServiceId": "라디오 TBN(경남)", "Category": "라디오" },
+      { "Name": "TBN(경북)", "ServiceId": "라디오 TBN(경북)", "Category": "라디오" },
+      { "Name": "TBN(경인)", "ServiceId": "라디오 TBN(경인)", "Category": "라디오" },
+      { "Name": "TBN(광주)", "ServiceId": "라디오 TBN(광주)", "Category": "라디오" },
+      { "Name": "TBN(대구)", "ServiceId": "라디오 TBN(대구)", "Category": "라디오" },
+      { "Name": "TBN(대전)", "ServiceId": "라디오 TBN(대전)", "Category": "라디오" },
+      { "Name": "TBN(부산)", "ServiceId": "라디오 TBN(부산)", "Category": "라디오" },
+      { "Name": "TBN(울산)", "ServiceId": "라디오 TBN(울산)", "Category": "라디오" },
+      { "Name": "TBN(전북)", "ServiceId": "라디오 TBN(전북)", "Category": "라디오" },
+      { "Name": "TBN(제주)", "ServiceId": "라디오 TBN(제주)", "Category": "라디오" },
+      { "Name": "TBN(충북)", "ServiceId": "라디오 TBN(충북)", "Category": "라디오" },
+      { "Name": "YTNNewsFM", "ServiceId": "라디오 YTNNewsFM", "Category": "라디오" },
+      { "Name": "경인방송", "ServiceId": "라디오 경인방송", "Category": "라디오" },
+      { "Name": "국악방송", "ServiceId": "라디오 국악방송", "Category": "라디오" },
+      { "Name": "극동방송", "ServiceId": "라디오 극동방송", "Category": "라디오" },
+      { "Name": "cpbc 가톨릭평화방송", "ServiceId": "라디오 cpbc 가톨릭평화방송", "Category": "라디오" },
+      { "Name": "올댓뮤직", "ServiceId": "라디오 올댓뮤직", "Category": "라디오" }
+    ]
+  },
+  "NAVER": {
+    "MY_CHANNELS": []
+  },
+  "TVING": {
+    "MY_CHANNELS": []
+  },
+  "SPOTV": {
+    "MY_CHANNELS": []
+  },
+  "WAVVE": {
+    "MY_CHANNELS": []
+  }
+}
