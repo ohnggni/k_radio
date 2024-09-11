@@ -1,2 +1,2 @@
 # 매일 새벽 2시에 epg2xml을 실행하여 xmltv.xml 파일로 출력
-0 2 * * * cd /app/frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/app/frontend/epg/xmltv.xml >> /var/log/cron.log 2>&1
+0 2 * * * cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml >> /var/log/cron.log 2>&1
