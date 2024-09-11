@@ -127,3 +127,50 @@ async function displayEPGInfo(channelKey) {
         console.log('No program found for current time on channel:', epgChannelName);
     }
 }
+
+function scheduleEPGUpdates() {
+    const now = new Date();
+    const minutes = now.getMinutes();
+    const nextUpdateInMilliseconds = ((5 - (minutes % 5)) * 60 * 1000) - (now.getSeconds() * 1000 + now.getMilliseconds());
+    
+    // 현재 시각을 기준으로 5분이 되는 시각까지 대기
+    setTimeout(() => {
+        updateEPGAndMetadata(); // 첫 업데이트 비동기 호출
+        setInterval(async () => {
+            await updateEPGAndMetadata(); // 5분마다 비동기 업데이트
+        }, 5 * 60 * 1000);
+    }, nextUpdateInMilliseconds);
+}
+
+// 페이지 로드 시 EPG 업데이트 스케줄러 호출
+document.addEventListener('DOMContentLoaded', async () => {
+    matchList = await loadMatchList();
+    if (matchList && matchList.channels) {
+        const epgData = await loadEPGData();
+        if (epgData) {
+            console.log('EPG Data:', epgData);
+            scheduleEPGUpdates(); // EPG 정보 업데이트 스케줄러 시작
+        }
+    } else {
+        console.error('Match list or channels data not available');
+    }
+});
+
+// EPG 정보와 메타데이터를 비동기적으로 업데이트하는 함수
+async function updateEPGAndMetadata() {
+    try {
+        await displayEPGInfo(currentChannelKey); // EPG 정보 업데이트
+
+        // 메타데이터 업데이트
+        if (currentChannelTitle && currentArtist && currentImage) {
+            setMediaSessionData(currentChannelTitle, currentArtist, currentImage);
+        }
+
+        // 오디오 재생 상태 확인 후 재생 중이 아니면 재시작
+        if (audioElement.paused) {
+            audioElement.play().catch(error => console.error('오디오 재생 중 오류 발생:', error));
+        }
+    } catch (error) {
+        console.error('EPG 업데이트 중 오류 발생:', error);
+    }
+}
