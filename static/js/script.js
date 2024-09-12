@@ -3,7 +3,7 @@ const audioElement = document.getElementById('globalAudioPlayer');
 const playingStatusElement = document.querySelector('.playing-status');
 const playingChannelElement = document.getElementById('playingChannel');
 const playingLogoElement = document.getElementById('playingLogo');
-const serverIp = process.env.SERVER_IP || 'localhost'; // 환경 변수에서 서버 IP 가져오기, 기본값은 'localhost'
+//const serverIp = process.env.SERVER_IP || 'localhost'; // 환경 변수에서 서버 IP 가져오기, 기본값은 'localhost'
 
 // 현재 선택된 채널과 음질 상태 저장
 let currentChannelKey = '';  // 현재 재생 중인 채널의 key 값
