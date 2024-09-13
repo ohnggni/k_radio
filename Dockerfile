@@ -1,5 +1,5 @@
-# Alpine Linux 베이스 이미지 사용 (초경량)
-FROM alpine:3.16 AS base
+# Alpine Linux 3.13 베이스 이미지 사용
+FROM alpine:3.13 AS base
 
 # 환경 변수 설정
 ENV TZ=Asia/Seoul
@@ -10,7 +10,7 @@ RUN apk add --no-cache \
     tzdata \
     nano \
     bash \
-    python3=3.9.2-r0 \
+    python3=3.9.1-r1 \
     py3-pip \
     cronie \
     git \
@@ -38,18 +38,15 @@ RUN pip3 install --upgrade pip && \
 # 백엔드 애플리케이션 설치
 WORKDIR /app
 COPY package*.json /app/
-RUN npm install
+RUN npm install && npm install express  # 모든 종속성 설치 (express 포함)
 
 # 프론트엔드 및 정적 파일 복사
 WORKDIR /frontend
 COPY . /frontend
 
 # 필요한 파일 복사
-COPY ./server.js /frontend/server.js
-COPY ./epg /frontend/epg
-
-# express 모듈 설치
-RUN npm install express
+COPY ./server.js /frontend/server.js  # server.js 파일을 복사합니다
+COPY ./epg /frontend/epg  # epg 디렉토리를 복사합니다
 
 # cronjob 파일 설정 및 로그 파일 생성
 RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/cron.log
