@@ -9,6 +9,6 @@ services:
       - "3006:3006"
     environment:
       - TZ=Asia/Seoul
-    volumes:
-      - ./frontend:/frontend
+    #volumes:
+    #  - ./frontend:/frontend
     restart: unless-stopped
