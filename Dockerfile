@@ -15,6 +15,7 @@ RUN apk add --no-cache \
     cronie \
     git \
     curl \
+    wget \
     nodejs \
     npm
 
@@ -22,8 +23,12 @@ RUN apk add --no-cache \
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     echo "Asia/Seoul" > /etc/timezone
 
-# 한글 지원을 위해 필요한 폰트 설치 대체 방법
-RUN apk --update add font-nanum
+# 한글 폰트 설치
+RUN wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumGothicCoding-2.5.zip -O /tmp/NanumGothicCoding.zip && \
+    mkdir -p /usr/share/fonts/nanum && \
+    unzip /tmp/NanumGothicCoding.zip -d /usr/share/fonts/nanum && \
+    fc-cache -fv && \
+    rm -rf /tmp/NanumGothicCoding.zip
 
 # pip 업그레이드 및 epg2xml 설치
 RUN pip3 install --upgrade pip && \
