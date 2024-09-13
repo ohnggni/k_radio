@@ -21,6 +21,8 @@ RUN apk add --no-cache \
     fontconfig
 
 # nano 설치 및 설정 추가
+RUN git clone https://github.com/scopatz/nanorc.git /tmp/nanorc && \
+    mv /tmp/nanorc/*.nanorc /usr/share/nano/
 RUN echo "include /usr/share/nano/*.nanorc" >> /root/.nanorc && \
     echo "set tabsize 4" >> /root/.nanorc && \
     echo "set autoindent" >> /root/.nanorc && \
@@ -50,6 +52,7 @@ RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/
 
 # Cleanup: 설치 후 불필요한 파일 제거
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean
 
 # 한글 로케일 설정
 ENV LANG=ko_KR.UTF-8
@@ -57,4 +60,4 @@ ENV LANGUAGE=ko_KR:ko
 ENV LC_ALL=ko_KR.UTF-8
 
 # dcron을 사용하여 cron 서비스 시작
-ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/crond -f -d 8 && cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml && node /frontend/server.js"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/crond -f -d 8 && cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml & node /frontend/server.js"]
