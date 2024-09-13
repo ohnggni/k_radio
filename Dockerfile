@@ -10,7 +10,7 @@ RUN apk add --no-cache \
     tzdata \
     nano \
     bash \
-    python3 \
+    python3=3.9.2-r0 \
     py3-pip \
     cronie \
     git \
