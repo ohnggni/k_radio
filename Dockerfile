@@ -12,10 +12,10 @@ RUN apk add --no-cache \
     bash \
     python3 \
     py3-pip \
-    cron \
+    cronie \
     git \
     curl \
-    nodejs=14.20.0-r0 \
+    nodejs \
     npm
 
 # 타임존 설정
@@ -54,4 +54,4 @@ ENV LANGUAGE=ko_KR:ko
 ENV LC_ALL=ko_KR.UTF-8
 
 # ENTRYPOINT에서 cron 서비스, 최초epg2xml, Node.js 병행 실행
-ENTRYPOINT ["/bin/bash", "-c", "cron && cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml && node /app/index.js & node /frontend/server.js"]
+ENTRYPOINT ["/bin/bash", "-c", "crond && cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml && node /app/index.js & node /frontend/server.js"]
