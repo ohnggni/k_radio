@@ -38,4 +38,4 @@ RUN npm install
 RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/cron.log
 
 # dcron을 사용하여 cron 서비스 시작
-ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/crond -f -d 8 && cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml && node /app/index.js & node /frontend/server.js"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/crond -f -d 8 && cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml && node /frontend/server.js"]
