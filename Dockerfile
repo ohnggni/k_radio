@@ -48,6 +48,9 @@ COPY . /frontend
 COPY ./server.js /frontend/server.js
 COPY ./epg /frontend/epg
 
+# express 모듈 설치
+RUN npm install express
+
 # cronjob 파일 설정 및 로그 파일 생성
 RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/cron.log
 
