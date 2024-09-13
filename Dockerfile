@@ -18,7 +18,7 @@ RUN apk add --no-cache \
     wget \
     nodejs \
     npm \
-    fontconfig  # fc-cache 사용을 위해 fontconfig 설치
+    fontconfig
 
 # 타임존 설정
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
