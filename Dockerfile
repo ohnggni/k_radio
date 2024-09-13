@@ -7,22 +7,21 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # 기본 패키지 설치
 RUN apk add --no-cache \
-    tzdata \
-    nano \
-    bash \
-    python3=3.9.1-r1 \
-    py3-pip \
-    cronie \
-    git \
-    curl \
-    wget \
-    nodejs \
-    npm \
-    fontconfig
+    tzdata \ # 타임존 데이터 설치
+    nano \ # 편집기 설치
+    bash \ # 쉘 설치
+    python3=3.9.1-r1 \ # Python 3.9 설치
+    py3-pip \ # pip 설치
+    cronie \ # cron 설치
+    git \ # Git 설치
+    curl \ # cURL 설치
+    wget \ # wget 설치
+    nodejs \ # Node.js 설치
+    npm \ # npm 설치
+    fontconfig # 폰트 설정 도구 설치
 
 # 타임존 설정
-RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
-    echo "Asia/Seoul" > /etc/timezone
+RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && echo "Asia/Seoul" > /etc/timezone
 
 # 한글 폰트 설치
 RUN wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumGothicCoding-2.5.zip -O /tmp/NanumGothicCoding.zip && \
@@ -32,21 +31,20 @@ RUN wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumGothic
     rm -rf /tmp/NanumGothicCoding.zip
 
 # pip 업그레이드 및 epg2xml 설치
-RUN pip3 install --upgrade pip && \
-    pip3 install git+https://github.com/epg2xml/epg2xml.git lxml
+RUN pip3 install --upgrade pip && pip3 install git+https://github.com/epg2xml/epg2xml.git lxml
 
 # 백엔드 애플리케이션 설치
 WORKDIR /app
 COPY package*.json /app/
-RUN npm install && npm install express  # 모든 종속성 설치 (express 포함)
+RUN npm install && npm install express
 
 # 프론트엔드 및 정적 파일 복사
 WORKDIR /frontend
 COPY . /frontend
 
 # 필요한 파일 복사
-COPY ./server.js /frontend/server.js  # server.js 파일을 복사합니다
-COPY ./epg /frontend/epg  # epg 디렉토리를 복사합니다
+COPY ./server.js /frontend/server.js 
+COPY ./epg /frontend/epg  
 
 # cronjob 파일 설정 및 로그 파일 생성
 RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/cron.log
