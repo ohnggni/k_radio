@@ -23,11 +23,10 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     echo "Asia/Seoul" > /etc/timezone
 
 # 로케일 설정 (한글 지원)
-RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ fonts-nanum && \
-    apk add --no-cache locales && \
-    echo "ko_KR.UTF-8 UTF-8" >> /etc/locale.gen && \
-    locale-gen ko_KR.UTF-8 && \
-    export LANG=ko_KR.UTF-8
+RUN apk add --no-cache --repository="http://dl-cdn.alpinelinux.org/alpine/edge/community" fonts-nanum-coding && \
+    apk add --no-cache glibc-i18n && \
+    echo "ko_KR.UTF-8 UTF-8" >> /usr/glibc-compat/etc/locale.gen && \
+    /usr/glibc-compat/sbin/locale-gen ko_KR.UTF-8
 
 # pip 업그레이드 및 epg2xml 설치
 RUN pip3 install --upgrade pip && \
