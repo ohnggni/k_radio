@@ -52,7 +52,6 @@ RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/
 
 # Cleanup: 설치 후 불필요한 파일 제거
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN apt-get clean
 
 # 한글 로케일 설정
 ENV LANG=ko_KR.UTF-8
