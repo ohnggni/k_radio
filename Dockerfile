@@ -7,18 +7,18 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # 기본 패키지 설치
 RUN apk add --no-cache \
-    tzdata \ # 타임존 데이터 설치
-    nano \ # 편집기 설치
-    bash \ # 쉘 설치
-    python3=3.9.1-r1 \ # Python 3.9 설치
-    py3-pip \ # pip 설치
-    cronie \ # cron 설치
-    git \ # Git 설치
-    curl \ # cURL 설치
-    wget \ # wget 설치
-    nodejs \ # Node.js 설치
-    npm \ # npm 설치
-    fontconfig # 폰트 설정 도구 설치
+    tzdata \
+    nano \
+    bash \
+    python3=3.9.1-r1 \
+    py3-pip \
+    cronie \
+    git \
+    curl \
+    wget \
+    nodejs \
+    npm \
+    fontconfig
 
 # 타임존 설정
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && echo "Asia/Seoul" > /etc/timezone
