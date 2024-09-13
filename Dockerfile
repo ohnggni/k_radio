@@ -38,15 +38,15 @@ RUN pip3 install --upgrade pip && \
 # 백엔드 애플리케이션 설치
 WORKDIR /app
 COPY package*.json /app/
-RUN npm install  # 모든 종속성 설치 (express 포함)
+RUN npm install
 
 # 프론트엔드 및 정적 파일 복사
 WORKDIR /frontend
 COPY . /frontend
 
 # 필요한 파일 복사
-COPY ./server.js /frontend/server.js  # server.js 파일을 복사합니다
-COPY ./epg /frontend/epg  # epg 디렉토리를 복사합니다
+COPY ./server.js /frontend/server.js
+COPY ./epg /frontend/epg
 
 # cronjob 파일 설정 및 로그 파일 생성
 RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/cron.log
