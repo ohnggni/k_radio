@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3006"
+    environment:
+      - TZ=Asia/Seoul
+    volumes:
+      - ./frontend:/frontend
+    restart: unless-stopped
