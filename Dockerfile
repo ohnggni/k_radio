@@ -45,11 +45,8 @@ WORKDIR /frontend
 COPY . /frontend
 
 # 필요한 파일 복사
-COPY server.js /frontend/server.js  # server.js 파일을 복사합니다
-COPY epg /frontend/epg  # epg 디렉토리를 복사합니다
-
-# express 모듈 설치
-RUN npm install express
+COPY ./server.js /frontend/server.js  # server.js 파일을 복사합니다
+COPY ./epg /frontend/epg  # epg 디렉토리를 복사합니다
 
 # cronjob 파일 설정 및 로그 파일 생성
 RUN chmod 0644 /frontend/crontab && crontab /frontend/crontab && touch /var/log/cron.log
