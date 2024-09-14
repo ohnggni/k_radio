@@ -22,6 +22,7 @@ cd ha_addon/radioha
 cat <<EOF > docker-compose.yml
 services:
   backend:
+    container_name: k_radio_backend
     build:
       context: .
       dockerfile: Dockerfile
@@ -49,7 +50,7 @@ git clone https://github.com/ohnggni/k_radio.git
 cd k_radio
 
 # 3. docker-compose.yml에 백엔드 주소 삽입
-sed -i "12i\      - SERVER_IP=$BACKEND_ADDRESS" docker-compose.yml
+sed -i "13i\      - SERVER_IP=$BACKEND_ADDRESS" docker-compose.yml
 
 # 4. Docker 빌드 및 실행
 docker-compose build
