@@ -20,8 +20,6 @@ cd ha_addon/radioha
 
 # 3. Docker Compose 파일 생성
 cat <<EOF > docker-compose.yml
-version: '3.8'
-
 services:
   backend:
     build:
