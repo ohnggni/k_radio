@@ -12,12 +12,15 @@
     "HTTP_PROXY": null
   },
   "KT": {
+    "ENABLED": false,
     "MY_CHANNELS": []
   },
   "LG": {
+    "ENABLED": false,
     "MY_CHANNELS": []
   },
   "SK": {
+    "ENABLED": false,
     "MY_CHANNELS": []
   },
   "DAUM": {
@@ -64,15 +67,19 @@
     ]
   },
   "NAVER": {
+    "ENABLED": false,
     "MY_CHANNELS": []
   },
   "TVING": {
+    "ENABLED": false,
     "MY_CHANNELS": []
   },
   "SPOTV": {
+    "ENABLED": false,
     "MY_CHANNELS": []
   },
   "WAVVE": {
+    "ENABLED": false,
     "MY_CHANNELS": []
   }
 }
