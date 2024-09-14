@@ -2,7 +2,7 @@
 
 # 사용자로부터 Docker 작업 디렉토리 입력 받기
 read -p "Enter the Docker working directory for temporary tasks(e.g., /docker, /home/ubuntu): " DOCKER_DIR
-read -p "Enter the backend address for future use(e.g., https://yourbackend.address:3005): " BACKEND_ADDRESS
+read -p "Enter the backend address for future use(e.g., http(s)://yourbackend.address:3005): " BACKEND_ADDRESS
 
 # 디렉토리가 존재하지 않으면 생성
 mkdir -p "$DOCKER_DIR"
