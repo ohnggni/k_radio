@@ -10,6 +10,5 @@ services:
       - "3006:3006"
     environment:
       - TZ=Asia/Seoul
-    #volumes:
-    #  - ./frontend:/frontend
+      - SERVER_IP=${BACKEND_ADDRESS}
     restart: unless-stopped
