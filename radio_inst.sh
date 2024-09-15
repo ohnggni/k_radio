@@ -44,7 +44,7 @@ docker-compose up -d
 # 3. WebUI 설치 시작 안내 및 백엔드 주소 입력 받기
 echo "Streaming server installation complete. Now setting up the WebUI."
 echo "For external access, it is recommended to set up a reverse proxy for the streaming server."
-read -p "Enter the reverse proxy URL for the streaming server (e.g., http(s)://yourbackend.address:3005): " BACKEND_ADDRESS
+read -p "Enter the streaming server URL(incl. port number) or its reverse proxy URL (e.g., http(s)://yourbackend.address:3005): " BACKEND_ADDRESS
 
 # WebUI (프론트엔드) 설치 시작 안내 및 포트 입력 받기
 read -p "Enter the port for the WebUI (default is 3006): " WEBUI_PORT
@@ -115,4 +115,4 @@ esac
 
 # 5. WebUI 접속 방법 안내
 echo "Installation complete. To access the WebUI, open your browser and go to http://<your-server-ip>:${WEBUI_PORT}."
-echo "For external access, it is recommended to set up a reverse proxy for this address."
+echo "For external access, it is recommended to set up a reverse proxy for this address as well."
