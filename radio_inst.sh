@@ -75,8 +75,6 @@ services:
     environment:
       - TZ=Asia/Seoul
       - SERVER_IP=${BACKEND_ADDRESS}
-    #volumes:
-    #  - ./frontend:/frontend
     restart: unless-stopped
 EOF
 
