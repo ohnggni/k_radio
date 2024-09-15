@@ -166,10 +166,10 @@ async function updateEPGAndMetadata() {
             setMediaSessionData(currentChannelTitle, currentArtist, currentImage);
         }
 
-        // 오디오 재생 상태 확인 후 재생 중이 아니면 재시작
-        if (audioElement.paused) {
-            audioElement.play().catch(error => console.error('오디오 재생 중 오류 발생:', error));
-        }
+        // 오디오 재생 상태 확인 후 재생 중이 아니면 재시작 (불필요하므로 주석처리)
+        //if (audioElement.paused) {
+        //    audioElement.play().catch(error => console.error('오디오 재생 중 오류 발생:', error));
+        //}
     } catch (error) {
         console.error('EPG 업데이트 중 오류 발생:', error);
     }
