@@ -94,6 +94,7 @@ services:
       - HTTP_AUTH_ENABLED=${HTTP_AUTH_ENABLED}
       - HTTP_AUTH_USER=${HTTP_AUTH_USER}
       - HTTP_AUTH_PASS=${HTTP_AUTH_PASS}
+      - FRONTEND_PORT=${WEBUI_PORT}
     restart: unless-stopped
 EOF
 
