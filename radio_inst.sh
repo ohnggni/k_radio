@@ -59,12 +59,26 @@ if [[ "$INSTALL_OPTION" == "1" || "$INSTALL_OPTION" == "3" ]]; then
   read -p "Enter the port for the WebUI (default is 3006): " WEBUI_PORT
   WEBUI_PORT=${WEBUI_PORT:-3006}
 
+  # HTTP Basic Authentication 설정
+  read -p "Enable HTTP Basic Authentication? (yes/no) [default: no]: " ENABLE_AUTH
+  ENABLE_AUTH=${ENABLE_AUTH:-no} # 사용자가 아무것도 입력하지 않으면 기본값 no로 설정
+  if [[ "$ENABLE_AUTH" == "yes" ]]; then
+    HTTP_AUTH_ENABLED=true
+    read -p "Enter HTTP Basic Auth username: " HTTP_AUTH_USER
+    read -p "Enter HTTP Basic Auth password: " HTTP_AUTH_PASS
+  else
+    HTTP_AUTH_ENABLED=false
+    HTTP_AUTH_USER=""
+    HTTP_AUTH_PASS=""
+  fi
+
   if [ -d "k_radio" ]; then
     rm -rf k_radio
   fi
   git clone https://github.com/ohnggni/k_radio.git
   cd k_radio
 
+  # docker-compose.yml 파일 생성 및 환경 변수 삽입
   cat <<EOF > docker-compose.yml
 services:
   frontend:
@@ -77,7 +91,9 @@ services:
     environment:
       - TZ=Asia/Seoul
       - SERVER_IP=${BACKEND_ADDRESS}
-      - FRONTEND_PORT=${WEBUI_PORT}
+      - HTTP_AUTH_ENABLED=${HTTP_AUTH_ENABLED}
+      - HTTP_AUTH_USER=${HTTP_AUTH_USER}
+      - HTTP_AUTH_PASS=${HTTP_AUTH_PASS}
     restart: unless-stopped
 EOF
 
