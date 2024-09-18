@@ -11,4 +11,5 @@ services:
     environment:
       - TZ=Asia/Seoul
       - SERVER_IP=${BACKEND_ADDRESS}
+      - FRONTEND_PORT=${WEBUI_PORT}
     restart: unless-stopped
