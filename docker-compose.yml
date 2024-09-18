@@ -10,6 +10,9 @@ services:
       - "3006:3006"
     environment:
       - TZ=Asia/Seoul
+      - HTTP_AUTH_ENABLED=false
+      - HTTP_AUTH_USER=admin
+      - HTTP_AUTH_PASS=password
       - SERVER_IP=${BACKEND_ADDRESS}
       - FRONTEND_PORT=${WEBUI_PORT}
     restart: unless-stopped
