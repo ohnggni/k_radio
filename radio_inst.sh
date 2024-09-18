@@ -2,7 +2,7 @@
 
 # 설치 옵션 선택
 echo "Choose an installation option:"
-echo "1) Install both backend and frontend"
+echo "1) Install both backend(streaming) and frontend(WebUI)"
 echo "2) Install backend only"
 echo "3) Install frontend only"
 echo "4) Do nothing"
