@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 80; // 새롭게 사용하는 포트
+const port = process.env.FRONTEND_PORT; // 새롭게 사용하는 포트
 const serverIp = process.env.SERVER_IP || 'localhost'; // 도커환경 변수에서 server ip 가져옴
 
 // 정적 파일 제공을 위한 경로 설정
