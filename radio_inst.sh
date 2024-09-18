@@ -87,7 +87,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${WEBUI_PORT}:3006"
+      - "${WEBUI_PORT}:80"
     environment:
       - TZ=Asia/Seoul
       - SERVER_IP=${BACKEND_ADDRESS}
