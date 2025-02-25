@@ -2,6 +2,21 @@ body {
     font-family: 'Jua', cursive;
     background-color: #F7F2E0;
 }
+/* ✅ 컨테이너 전체를 좌측 정렬 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* ✅ 상태 표시바 + 테이블 + 오디오 플레이어 감싸는 wrapper */
+.player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 250px; /* 🎯 UI 요소들을 고정된 너비 안에서 배치 */
+}
 
 h4 {
     max-width: 250px !important;
@@ -11,13 +26,28 @@ h4 {
     text-align: left;
     font-size: 26px;
     color: #585858;
-
     padding-bottom: 0px; /* 하단 패딩을 0으로 설정 */
     margin-bottom: 4px; /* 하단 마진을 줄여 간격 조정 */
 }
 
-table {
-    max-width: 250px !important;
+/* ✅ 테이블이 포함된 래퍼 */
+.table-wrapper {
+    position: relative; /* 🎯 모달이 테이블 내부에서 배치되도록 설정 */
+    width: 250px;
+    height: 230px;
+}
+
+/* ✅ 테이블 크기 유지 */
+.table {
+    width: 250px;
+    margin-left: 0;
+}
+
+/* ✅ 오디오 플레이어 크기 조정 */
+.audio-player {
+    width: 100%;
+    height: 30px;
+    margin-top: 2px;
 }
 
 td img {
@@ -34,43 +64,85 @@ td img:hover {
     /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
 }
 
+/* ✅ 상태 표시바 스타일 (여백 최소화, 정렬 조정) */
 .playing-info {
-    font-family: 'Jua', cursive;
-    color: #F2F2F2;
-    background-color: gray;
+    width: 250px !important; /* 가로 고정 */
     max-width: 250px !important;
-    border: 1px solid #bbb;
-    border-radius: 5px;
+    height: auto !important; /* 내용에 따라 자동 조정 */
+    background-color: #6c757d;
+    padding: 4px 8px !important; /* 내부 패딩 최소화 */
+    margin-bottom: 4px !important; /* 아래 여백 최소화 */
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* 수평으로 채널 정보를 확장 */
-    padding: 5px 10px; /* padding을 줄여 여백을 최소화 */
-    font-size: 12px;
-    height: auto;
+    justify-content: center;
+    border-radius: 8px;
 }
 
-.playing-logo {
-    margin-right: 5px;
+/* ✅ 내부 요소 정리 (여백 최소화) */
+.playing-info .d-flex {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.playing-status {
-    font-family: 'Jua', cursive;
-    margin-left: 0; /* 왼쪽 정렬로 변경 */
+/* ✅ 채널 로고 크기 조정 */
+#playingLogo {
+    width: 16px !important; /* 기존 14px → 16px로 크기 증가 */
+    height: 16px !important;
+    margin-right: 4px; /* 로고와 텍스트 간 여백 확보 */
+}
+
+/* ✅ Broadcast Pin 아이콘 크기 조정 */
+#epgLogo {
+    width: 18px !important; /* 기존 14px → 18px */
+    height: 18px !important;
+    margin-right: 2px;
+}
+
+/* ✅ 텍스트 스타일 통일 */
+#playingChannel, .playing-status, #epg-info {
+    font-size: 12px !important;
+    color: #fff !important;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* ✅ 음질 선택 (오른쪽 정렬) */
+.playing-info-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto !important;
+}
+
+.playing-info-right select {
+    font-size: 12px !important;
+    padding: 0px 4px !important;
+    height: 20px !important;
+    width: auto !important;
+    background-color: gray;
     color: #F2F2F2;
-    font-size: 12px;
+    border: none;
+}
+
+/* ✅ EPG 정보 올바르게 정렬 */
+.epg-container {
+    display: flex;
+    align-items: center;
+}
+
+#epg-info {
+    margin-left: 4px !important;
+    white-space: nowrap;
 }
 
 #qualitySelect {
+    font-size: 12px !important;
+    padding: 0px 4px !important;
+    height: 20px !important;
+    width: auto !important;
     background-color: gray;
     color: #F2F2F2;
-    font-family: 'Jua', cursive;
-    font-size: 12px;
     border: none;
-    padding: 0;
-    height: auto;
-    width: auto;
-    appearance: none;
-    margin-left: auto; /* 드롭다운 메뉴를 오른쪽으로 고정 */
 }
 
 #qualitySelect option {
@@ -79,17 +151,54 @@ td img:hover {
     font-size: 12px;
 }
 
-/* 오디오 요소의 높이를 상태바 높이와 동일하게 설정 */
-.audio-player {
-    height: 30px; /* 상태바 높이와 일치 */
-    max-width: 250px !important;
-    /*margin-left: 10px; /* 상태바와의 간격 조정 */
-}
-
 .bi-arrow-clockwise {
     cursor: pointer; /* 마우스 커서를 손가락 모양으로 변경 */
     transition: transform 0.2s; /* 클릭 시 회전 애니메이션 추가 */
 }
 .bi-arrow-clockwise:hover {
     transform: rotate(90deg); /* 호버 시 회전 효과 */
+}
+
+/* ✅ 모달 창을 테이블 내부에서만 표시 */
+#playModal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 250px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+/* ✅ 모달 내부 스타일 */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 200px;
+}
+
+/* ✅ Play 버튼 */
+#playButton {
+    font-size: 18px;
+    padding: 10px 20px;
+    /*margin-top: 10px;*/
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 50%;
+}
+
+#playButton:hover {
+    background-color: #0056b3;
 }
