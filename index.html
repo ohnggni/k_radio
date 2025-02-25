@@ -19,135 +19,138 @@
 
 <body>
     <div class="container mt-4">
-        <h4>&nbsp;Radio Korea&nbsp;&nbsp;
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16" onclick="reloadPage()">
-                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
-                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
-                        </svg>
+        <h4>Radio Korea&nbsp;&nbsp;
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16" onclick="reloadPage()">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+            </svg>
             <svg id="airplay-button" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-cast" viewBox="0 0 16 16">
-                <path
-                    d="m7.646 9.354-3.792 3.792a.5.5 0 0 0 .353.854h7.586a.5.5 0 0 0 .354-.854L8.354 9.354a.5.5 0 0 0-.708 0z" />
-                <path
-                    d="M11.414 11H14.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h3.086l-1 1H1.5A1.5 1.5 0 0 1 0 10.5v-7A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v7a1.5 1.5 0 0 1-1.5 1.5h-2.086l-1-1z" />
+                <path d="m7.646 9.354-3.792 3.792a.5.5 0 0 0 .353.854h7.586a.5.5 0 0 0 .354-.854L8.354 9.354a.5.5 0 0 0-.708 0z" />
+                <path d="M11.414 11H14.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h3.086l-1 1H1.5A1.5 1.5 0 0 1 0 10.5v-7A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v7a1.5 1.5 0 0 1-1.5 1.5h-2.086l-1-1z" />
             </svg>
         </h4>
-        <!-- 재생 시도 버튼>
-        <button id="retryButton" style="display:none;" onclick="retryPlayback()">재생 다시 시도</button-->
 
-       <!-- 상태 표시바 영역 -->
-       <div class="playing-info d-flex flex-column" style="background-color: #6c757d; padding: 4px; border-radius: 8px; margin-top: 0px;"> <!-- 상단 여백을 줄임 -->
-            <div class="d-flex align-items-center justify-content-between mb-0" style="margin-left: 8px;">
-                <div class="d-flex align-items-center flex-grow-1"> <!-- flex-grow-1 추가 -->
-                    <img class="playing-logo me-2" id="playingLogo" src="" alt="Playing Channel Logo" style="width: 14px; height: 14px;">
-                    <span id="playingChannel" style="color: #fff; font-weight: bold;">No channel</span>
-                    <span class="playing-status ms-2" style="color: #fff;">playing</span>
+        <!-- 🎯 상태 표시바 + 테이블 + 오디오 플레이어를 감싸는 container 추가 -->
+        <div class="player-container">
+            <!-- 현재 재생 중인 채널 정보 표시 -->
+            <!-- 상태 표시바 영역 -->
+            <div class="playing-info d-flex flex-column">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center flex-grow-1">
+                        <img class="playing-logo me-2" id="playingLogo" src="" alt="Playing Channel Logo">
+                        <span id="playingChannel">No channel</span>
+                        <span class="playing-status">&nbsp;playing</span>
+                    </div>
+                    <div class="playing-info-right d-flex align-items-center">
+                        <select id="qualitySelect" class="form-select form-select-sm">
+                            <option value="0">256k</option>
+                            <option value="1">192k</option>
+                            <option value="2">128k</option>
+                            <option value="3">96k</option>
+                            <option value="4">48k</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center" style="margin-left: auto; margin-right: 8px;"> <!-- 오른쪽 고정을 위해 ms-auto 사용 -->
-                    <label for="qualitySelect" class="form-label text-white mb-0 me-2">🔊:</label>
-                    <select id="qualitySelect" class="form-select form-select-sm">
-                        <option value="0">256k</option>
-                        <option value="1">192k</option>
-                        <option value="2">128k</option>
-                        <option value="3">96k</option>
-                        <option value="4">48k</option>
-                    </select>
+                <div class="epg-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="epgLogo" fill="white" class="bi bi-broadcast-pin">
+                        <path d="M3.05 3.05a7 7 0 0 0 0 9.9.5.5 0 0 1-.707.707 8 8 0 0 1 0-11.314.5.5 0 0 1 .707.707m2.122 2.122a4 4 0 0 0 0 5.656.5.5 0 1 1-.708.708 5 5 0 0 1 0-7.072.5.5 0 0 1 .708.708m5.656-.708a.5.5 0 0 1 .708 0 5 5 0 0 1 0 7.072.5.5 0 1 1-.708-.708 4 4 0 0 0 0-5.656.5.5 0 0 1 0-.708m2.122-2.12a.5.5 0 0 1 .707 0 8 8 0 0 1 0 11.313.5.5 0 0 1-.707-.707 7 7 0 0 0 0-9.9.5.5 0 0 1 0-.707zM6 8a2 2 0 1 1 2.5 1.937V15.5a.5.5 0 0 1-1 0V9.937A2 2 0 0 1 6 8"/>
+                    </svg>
+                    <span id="epg-info">N/A</span>
                 </div>
             </div>
-            <div class="d-flex align-items-center mt-1" style="margin-left: 8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-broadcast-pin" viewBox="0 0 16 16">
-                    <path d="M3.05 3.05a7 7 0 0 0 0 9.9.5.5 0 0 1-.707.707 8 8 0 0 1 0-11.314.5.5 0 0 1 .707.707m2.122 2.122a4 4 0 0 0 0 5.656.5.5 0 1 1-.708.708 5 5 0 0 1 0-7.072.5.5 0 0 1 .708.708m5.656-.708a.5.5 0 0 1 .708 0 5 5 0 0 1 0 7.072.5.5 0 1 1-.708-.708 4 4 0 0 0 0-5.656.5.5 0 0 1 0-.708m2.122-2.12a.5.5 0 0 1 .707 0 8 8 0 0 1 0 11.313.5.5 0 0 1-.707-.707 7 7 0 0 0 0-9.9.5.5 0 0 1 0-.707zM6 8a2 2 0 1 1 2.5 1.937V15.5a.5.5 0 0 1-1 0V9.937A2 2 0 0 1 6 8"/>
-                </svg>
-                <div id="epg-info" style="color: #fff; margin-left: 7px;">N/A</div>
+            <!-- 전체 채널 영역 -->
+            <div class="table-wrapper">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="/static/images/ebs_fm.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('ebsfm', 'EBS', 'Ohnggni Radio', '/static/images/ebs_fm.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/cbs_music.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('cbs_music_fm', 'CBS Music', 'Ohnggni Radio', '/static/images/cbs_music.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/kbs_classic.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('kbs_classic', 'KBS Classic', 'Ohnggni Radio', '/static/images/kbs_classic.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/kbs1.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('kbs_1radio', 'KBS1', 'Ohnggni Radio', '/static/images/kbs1.png')">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="/static/images/ytn.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('ytn', 'YTN', 'Ohnggni Radio', '/static/images/ytn.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/tbs.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('tbsfm', 'TBS', 'Ohnggni Radio', '/static/images/tbs.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/tbn.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('tbnfm', 'TBN', 'Ohnggni Radio', '/static/images/tbn.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/itv.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('ifm', 'iTV', 'Ohnggni Radio', '/static/images/itv.png')">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="/static/images/kbs_happy.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('kbs_happy', 'KBS Happy', 'Ohnggni Radio', '/static/images/kbs_happy.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/cbs.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('cbs_fm', 'CBS', 'Ohnggni Radio', '/static/images/cbs.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/kbs_cool.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('kbs_cool', 'KBS Cool', 'Ohnggni Radio', '/static/images/kbs_cool.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/kbs3.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('kbs_3radio', 'KBS3', 'Ohnggni Radio', '/static/images/kbs3.png')">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="/static/images/sbs_power.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('sbs_power', 'SBS Power', 'Ohnggni Radio', '/static/images/sbs_power.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/sbs_love.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('sbs_love', 'SBS Love', 'Ohnggni Radio', '/static/images/sbs_love.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/mbc_fm.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('mbc_fm', 'MBC', 'Ohnggni Radio', '/static/images/mbc_fm.png')">
+                            </td>
+                            <td>
+                                <img src="/static/images/mbc_fm4u.png" alt="Channel Image" width="50"
+                                    onclick="onChannelLogoClick('mbc_fm4u', 'MBC FM4U', 'Ohnggni Radio', '/static/images/mbc_fm4u.png')">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 🎯 모달 창 (테이블 내부에서만 표시) -->
+                <div id="playModal" class="modal">
+                    <!--div class="modal-content"-->
+                        <!--p>Click Play to start the radio.</p-->
+                        <button id="playButton" class="btn btn-primary">Play</button>
+                    <!--/div-->
+                </div>
             </div>
+            <!-- 오디오 플레이어 -->
+            <audio id="globalAudioPlayer" class="audio-player" controls></audio>
         </div>
-        <!-- 전체 채널 영역 -->
-        <table class="table table-sm mt-2 mb-1">
-            <thead>
-                <!-- ...(생략)... -->
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="/static/images/ebs_fm.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('ebsfm', 'EBS', 'Ohnggni Radio', '/static/images/ebs_fm.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/cbs_music.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('cbs_music_fm', 'CBS Music', 'Ohnggni Radio', '/static/images/cbs_music.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/kbs_classic.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('kbs_classic', 'KBS Classic', 'Ohnggni Radio', '/static/images/kbs_classic.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/kbs1.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('kbs_1radio', 'KBS1', 'Ohnggni Radio', '/static/images/kbs1.png')">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="/static/images/ytn.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('ytn', 'YTN', 'Ohnggni Radio', '/static/images/ytn.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/tbs.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('tbsfm', 'TBS', 'Ohnggni Radio', '/static/images/tbs.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/tbn.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('tbnfm', 'TBN', 'Ohnggni Radio', '/static/images/tbn.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/itv.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('ifm', 'iTV', 'Ohnggni Radio', '/static/images/itv.png')">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="/static/images/kbs_happy.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('kbs_happy', 'KBS Happy', 'Ohnggni Radio', '/static/images/kbs_happy.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/cbs.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('cbs_fm', 'CBS', 'Ohnggni Radio', '/static/images/cbs.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/kbs_cool.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('kbs_cool', 'KBS Cool', 'Ohnggni Radio', '/static/images/kbs_cool.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/kbs3.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('kbs_3radio', 'KBS3', 'Ohnggni Radio', '/static/images/kbs3.png')">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="/static/images/sbs_power.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('sbs_power', 'SBS Power', 'Ohnggni Radio', '/static/images/sbs_power.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/sbs_love.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('sbs_love', 'SBS Love', 'Ohnggni Radio', '/static/images/sbs_love.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/mbc_fm.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('mbc_fm', 'MBC', 'Ohnggni Radio', '/static/images/mbc_fm.png')">
-                    </td>
-                    <td>
-                        <img src="/static/images/mbc_fm4u.png" alt="Channel Image" width="50"
-                             onclick="onChannelLogoClick('mbc_fm4u', 'MBC FM4U', 'Ohnggni Radio', '/static/images/mbc_fm4u.png')">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <!-- 전역 오디오 플레이어 -->
-        <audio id="globalAudioPlayer" class="audio-player" controls></audio>
     </div>
     <script src="/config.js"></script>
     <script src="/static/js/epg.js"></script>
-    <script src="/static/js/script.js"></script>
-    
+    <script src="/static/js/script.js"></script>   
 </body>
-
 </html>
