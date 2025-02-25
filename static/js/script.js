@@ -85,13 +85,13 @@ function setMediaSessionData(title, artist, image) {
 
 // 오디오 재생이 멈췄을 때 상태 업데이트
 audioElement.addEventListener('pause', function () {
-    playingStatusElement.textContent = "paused"; // Pause 기호로 업데이트
+    playingStatusElement.innerHTML = "&nbsp;paused"; // Pause 기호로 업데이트
     playingStatusElement.style.display = 'inline'; // 상태 텍스트 보이기
 });
 
 // 오디오 재생이 시작되었을 때 상태 업데이트
 audioElement.addEventListener('play', function () {
-    playingStatusElement.textContent = "playing"; // Play 기호로 업데이트
+    playingStatusElement.innerHTML = "&nbsp;playing"; // Play 기호로 업데이트
     playingStatusElement.style.display = 'inline'; // 상태 텍스트 보이기
 });
 
@@ -105,21 +105,89 @@ function reloadPage() {
     location.reload(); // 페이지 새로 고침
 }
 
-// airplay button 처리
-document.addEventListener('DOMContentLoaded', () => {
-    const player = document.querySelector("#globalAudioPlayer")
-    const button = document.querySelector("#airplay-button")
-    let isAirPlayAvailable = false
+// URL 파라미터(query string) 대응 코드
+document.addEventListener("DOMContentLoaded", function () {
+    const player = document.querySelector("#globalAudioPlayer");
+    const airplayButton = document.querySelector("#airplay-button");
+    const playModal = document.getElementById("playModal");
+    const playButton = document.getElementById("playButton");
+    const table = document.querySelector(".table");
 
+    let isAirPlayAvailable = false;
+    let channelId = null;
+
+    // 🎛 AirPlay 버튼 활성화
     player.addEventListener("webkitplaybacktargetavailabilitychanged", event => {
         if (event.availability === "available") {
-            isAirPlayAvailable = true
+            isAirPlayAvailable = true;
         }
-    })
+    });
 
-    button.addEventListener("click", () => {
+    airplayButton.addEventListener("click", () => {
         if (isAirPlayAvailable) {
-            player.webkitShowPlaybackTargetPicker()
+            player.webkitShowPlaybackTargetPicker();
         }
-    })
+    });
+
+    // 🔎 URL에서 채널 파라미터 가져오기
+    function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    channelId = getQueryParam("channel");
+
+    // 📡 채널별 정보 매핑
+    const channelMap = {
+        "ebsfm": ["ebsfm", "EBS", "Ohnggni Radio", "/static/images/ebs_fm.png"],
+        "cbs_music_fm": ["cbs_music_fm", "CBS Music", "Ohnggni Radio", "/static/images/cbs_music.png"],
+        "kbs_classic": ["kbs_classic", "KBS Classic", "Ohnggni Radio", "/static/images/kbs_classic.png"],
+        "kbs_1radio": ["kbs_1radio", "KBS1", "Ohnggni Radio", "/static/images/kbs1.png"],
+        "ytn": ["ytn", "YTN", "Ohnggni Radio", "/static/images/ytn.png"],
+        "tbsfm": ["tbsfm", "TBS", "Ohnggni Radio", "/static/images/tbs.png"],
+        "tbnfm": ["tbnfm", "TBN", "Ohnggni Radio", "/static/images/tbn.png"],
+        "ifm": ["ifm", "iTV", "Ohnggni Radio", "/static/images/itv.png"],
+        "kbs_happy": ["kbs_happy", "KBS Happy", "Ohnggni Radio", "/static/images/kbs_happy.png"],
+        "cbs_fm": ["cbs_fm", "CBS", "Ohnggni Radio", "/static/images/cbs.png"],
+        "kbs_cool": ["kbs_cool", "KBS Cool", "Ohnggni Radio", "/static/images/kbs_cool.png"],
+        "kbs_3radio": ["kbs_3radio", "KBS3", "Ohnggni Radio", "/static/images/kbs3.png"],
+        "sbs_power": ["sbs_power", "SBS Power", "Ohnggni Radio", "/static/images/sbs_power.png"],
+        "sbs_love": ["sbs_love", "SBS Love", "Ohnggni Radio", "/static/images/sbs_love.png"],
+        "mbc_fm": ["mbc_fm", "MBC", "Ohnggni Radio", "/static/images/mbc_fm.png"],
+        "mbc_fm4u": ["mbc_fm4u", "MBC FM4U", "Ohnggni Radio", "/static/images/mbc_fm4u.png"]
+    };
+
+    // ✅ 1) 파라미터 없이 실행한 경우 (모달 숨김, 로고 클릭 시 재생 유지)
+    if (!channelId) {
+        playModal.style.display = "none";
+        return;
+    }
+
+    // ✅ 2) Play 버튼 클릭 시 채널 설정 및 재생
+    playButton.addEventListener("click", function () {
+        if (channelMap[channelId]) {
+            console.log(`채널 선택됨: ${channelId}`);
+            
+            // 🎯 Play 버튼을 눌렀을 때만 채널 설정 및 재생 시작
+            onChannelLogoClick(...channelMap[channelId]);
+
+            // 🎯 모달 숨기기
+            playModal.style.display = "none";
+
+            // 🎵 오디오 재생 시도
+            player.play().then(() => {
+                console.log("수동 재생 성공");
+            }).catch((error) => {
+                console.error("수동 재생 실패:", error);
+            });
+
+        } else {
+            console.warn(`잘못된 채널 ID: ${channelId}`);
+            playModal.style.display = "none";
+        }
+    });
+
+    // ✅ 3) 모달 표시 (파라미터가 있을 때만)
+    table.style.position = "relative";
+    playModal.style.display = "flex";
 });
