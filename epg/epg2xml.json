@@ -24,6 +24,7 @@
     "MY_CHANNELS": []
   },
   "DAUM": {
+    "ENABLED": false,
     "MY_CHANNELS": [
       { "Name": "ClassicFM", "ServiceId": "라디오 ClassicFM", "Category": "라디오" },
       { "Name": "KBS CoolFM", "ServiceId": "라디오 KBS CoolFM", "Category": "라디오" },
@@ -67,8 +68,31 @@
     ]
   },
   "NAVER": {
-    "ENABLED": false,
-    "MY_CHANNELS": []
+    "ENABLED": true,
+    "MY_CHANNELS": [
+      { "Name": "KBS1FM", "ServiceId": "815454", "Category": "라디오" },
+      { "Name": "KBS2FM", "ServiceId": "815457", "Category": "라디오" },
+      { "Name": "MBCFM4U", "ServiceId": "815463", "Category": "라디오" },
+      { "Name": "MBC표준FM", "ServiceId": "815464", "Category": "라디오" },
+      { "Name": "SBS러브FM", "ServiceId": "815465", "Category": "라디오" },
+      { "Name": "SBS파워FM", "ServiceId": "815467", "Category": "라디오" },
+      { "Name": "KBS1R", "ServiceId": "815455", "Category": "라디오" },
+      { "Name": "KBS2R", "ServiceId": "815458", "Category": "라디오" },
+      { "Name": "KBS3R", "ServiceId": "815460", "Category": "라디오" },
+      { "Name": "KBS한민족", "ServiceId": "815461", "Category": "라디오" },
+      { "Name": "KBSWorldRadio", "ServiceId": "815447", "Category": "라디오" },
+      { "Name": "BBS불교방송", "ServiceId": "815448", "Category": "라디오" },
+      { "Name": "CBS음악FM", "ServiceId": "815449", "Category": "라디오" },
+      { "Name": "CBS표준FM", "ServiceId": "815451", "Category": "라디오" },
+      { "Name": "EBS교육방송", "ServiceId": "815452", "Category": "라디오" },
+      { "Name": "TBS교통방송", "ServiceId": "815468", "Category": "라디오" },
+      { "Name": "CPBC 평화방송", "ServiceId": "1974894", "Category": "라디오" },
+      { "Name": "경인방송", "ServiceId": "1974895", "Category": "라디오" },
+      { "Name": "YTN NEWS FM", "ServiceId": "2074615", "Category": "라디오" },
+      { "Name": "극동방송", "ServiceId": "2074616", "Category": "라디오" },
+      { "Name": "국악방송", "ServiceId": "2891853", "Category": "라디오" },
+      { "Name": "원음방송", "ServiceId": "6303645", "Category": "라디오" }
+    ]
   },
   "TVING": {
     "ENABLED": false,
