@@ -29,7 +29,7 @@ if [[ "$INSTALL_OPTION" == "1" || "$INSTALL_OPTION" == "2" ]]; then
   if [ -d "ha_addon" ]; then
     rm -rf ha_addon
   fi
-  git clone https://github.com/projectdhs/ha_addon.git
+  git clone https://github.com/ohnggni/ha_addon.git
   cd ha_addon/radioha
 
   cat <<EOF > docker-compose.yml
