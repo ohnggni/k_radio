@@ -1,0 +1,18 @@
+[
+    {"key": "ebsfm", "title": "EBS", "artist": "Ohnggni Radio", "logo": "/static/images/ebs_fm.png", "alt": "EBS FM"},
+    {"key": "cbs_music_fm", "title": "CBS Music", "artist": "Ohnggni Radio", "logo": "/static/images/cbs_music.png", "alt": "CBS Music"},
+    {"key": "kbs_classic", "title": "KBS Classic", "artist": "Ohnggni Radio", "logo": "/static/images/kbs_classic.png", "alt": "KBS Classic"},
+    {"key": "kbs_1radio", "title": "KBS1", "artist": "Ohnggni Radio", "logo": "/static/images/kbs1.png", "alt": "KBS 1Radio"},
+    {"key": "ytn", "title": "YTN", "artist": "Ohnggni Radio", "logo": "/static/images/ytn.png", "alt": "YTN"},
+    {"key": "tbsfm", "title": "TBS", "artist": "Ohnggni Radio", "logo": "/static/images/tbs.png", "alt": "TBS"},
+    {"key": "tbnfm", "title": "TBN", "artist": "Ohnggni Radio", "logo": "/static/images/tbn.png", "alt": "TBN"},
+    {"key": "ifm", "title": "iTV", "artist": "Ohnggni Radio", "logo": "/static/images/itv.png", "alt": "경인방송"},
+    {"key": "kbs_happy", "title": "KBS Happy", "artist": "Ohnggni Radio", "logo": "/static/images/kbs_happy.png", "alt": "KBS Happy"},
+    {"key": "cbs_fm", "title": "CBS", "artist": "Ohnggni Radio", "logo": "/static/images/cbs.png", "alt": "CBS Rainbow"},
+    {"key": "kbs_cool", "title": "KBS Cool", "artist": "Ohnggni Radio", "logo": "/static/images/kbs_cool.png", "alt": "KBS Cool FM"},
+    {"key": "kbs_3radio", "title": "KBS3", "artist": "Ohnggni Radio", "logo": "/static/images/kbs3.png", "alt": "KBS 3Radio"},
+    {"key": "sbs_power", "title": "SBS Power", "artist": "Ohnggni Radio", "logo": "/static/images/sbs_power.png", "alt": "SBS Power FM"},
+    {"key": "sbs_love", "title": "SBS Love", "artist": "Ohnggni Radio", "logo": "/static/images/sbs_love.png", "alt": "SBS Love FM"},
+    {"key": "mbc_fm", "title": "MBC", "artist": "Ohnggni Radio", "logo": "/static/images/mbc_fm.png", "alt": "MBC Radio"},
+    {"key": "mbc_fm4u", "title": "MBC FM4U", "artist": "Ohnggni Radio", "logo": "/static/images/mbc_fm4u.png", "alt": "MBC FM4U"}
+]

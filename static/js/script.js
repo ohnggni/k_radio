@@ -28,7 +28,7 @@ function onChannelLogoClick(key, title, artist, image) {
     currentArtist = artist; // 클릭된 채널의 artist 값으로 설정
     currentImage = image; // 클릭된 채널의 이미지 값으로 설정
     changeAudioSource(`${SERVER_IP}/radio?keys=${key}&token=homeassistant&atype=${currentQuality}`, key, title, artist, image); // SERVER_IP는 server.js(도커환경변수에서부터)에서 사전에 지정
-    
+
     // 추가: EPG 정보 업데이트 함수 호출
     if (typeof displayEPGInfo === 'function') {
         displayEPGInfo(key); // epg.js의 displayEPGInfo 호출
@@ -137,25 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     channelId = getQueryParam("channel");
 
-    // 📡 채널별 정보 매핑
-    const channelMap = {
-        "ebsfm": ["ebsfm", "EBS", "Ohnggni Radio", "/static/images/ebs_fm.png"],
-        "cbs_music_fm": ["cbs_music_fm", "CBS Music", "Ohnggni Radio", "/static/images/cbs_music.png"],
-        "kbs_classic": ["kbs_classic", "KBS Classic", "Ohnggni Radio", "/static/images/kbs_classic.png"],
-        "kbs_1radio": ["kbs_1radio", "KBS1", "Ohnggni Radio", "/static/images/kbs1.png"],
-        "ytn": ["ytn", "YTN", "Ohnggni Radio", "/static/images/ytn.png"],
-        "tbsfm": ["tbsfm", "TBS", "Ohnggni Radio", "/static/images/tbs.png"],
-        "tbnfm": ["tbnfm", "TBN", "Ohnggni Radio", "/static/images/tbn.png"],
-        "ifm": ["ifm", "iTV", "Ohnggni Radio", "/static/images/itv.png"],
-        "kbs_happy": ["kbs_happy", "KBS Happy", "Ohnggni Radio", "/static/images/kbs_happy.png"],
-        "cbs_fm": ["cbs_fm", "CBS", "Ohnggni Radio", "/static/images/cbs.png"],
-        "kbs_cool": ["kbs_cool", "KBS Cool", "Ohnggni Radio", "/static/images/kbs_cool.png"],
-        "kbs_3radio": ["kbs_3radio", "KBS3", "Ohnggni Radio", "/static/images/kbs3.png"],
-        "sbs_power": ["sbs_power", "SBS Power", "Ohnggni Radio", "/static/images/sbs_power.png"],
-        "sbs_love": ["sbs_love", "SBS Love", "Ohnggni Radio", "/static/images/sbs_love.png"],
-        "mbc_fm": ["mbc_fm", "MBC", "Ohnggni Radio", "/static/images/mbc_fm.png"],
-        "mbc_fm4u": ["mbc_fm4u", "MBC FM4U", "Ohnggni Radio", "/static/images/mbc_fm4u.png"]
-    };
+    // 📡 채널별 정보 매핑: channels.js가 /static/channels.json에서 불러와 window.CHANNEL_MAP에 채워둠
+    // (여기서 window.CHANNEL_MAP을 직접 참조해야, channels.js의 fetch가 이 시점 이후에 끝나도 최신값을 읽는다)
 
     // ✅ 1) 파라미터 없이 실행한 경우 (모달 숨김, 로고 클릭 시 재생 유지)
     if (!channelId) {
@@ -165,9 +148,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ 2) Play 버튼 클릭 시 채널 설정 및 재생
     playButton.addEventListener("click", function () {
+        const channelMap = window.CHANNEL_MAP || {};
         if (channelMap[channelId]) {
             console.log(`채널 선택됨: ${channelId}`);
-            
+
             // 🎯 Play 버튼을 눌렀을 때만 채널 설정 및 재생 시작
             onChannelLogoClick(...channelMap[channelId]);
 

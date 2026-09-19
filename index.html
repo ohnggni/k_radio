@@ -34,61 +34,9 @@
             </div>
         </header>
 
-        <!-- 채널 그리드 (script.js가 .table 클래스로 참조하므로 클래스명 유지) -->
+        <!-- 채널 그리드: 버튼은 channels.js가 /static/channels.json에서 읽어와 동적으로 채움 -->
         <div class="table-wrapper table">
-            <div class="channel-grid">
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('ebsfm', 'EBS', 'Ohnggni Radio', '/static/images/ebs_fm.png')">
-                    <img src="/static/images/ebs_fm.png" alt="EBS FM">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('cbs_music_fm', 'CBS Music', 'Ohnggni Radio', '/static/images/cbs_music.png')">
-                    <img src="/static/images/cbs_music.png" alt="CBS Music">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('kbs_classic', 'KBS Classic', 'Ohnggni Radio', '/static/images/kbs_classic.png')">
-                    <img src="/static/images/kbs_classic.png" alt="KBS Classic">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('kbs_1radio', 'KBS1', 'Ohnggni Radio', '/static/images/kbs1.png')">
-                    <img src="/static/images/kbs1.png" alt="KBS 1Radio">
-                </button>
-
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('ytn', 'YTN', 'Ohnggni Radio', '/static/images/ytn.png')">
-                    <img src="/static/images/ytn.png" alt="YTN">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('tbsfm', 'TBS', 'Ohnggni Radio', '/static/images/tbs.png')">
-                    <img src="/static/images/tbs.png" alt="TBS">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('tbnfm', 'TBN', 'Ohnggni Radio', '/static/images/tbn.png')">
-                    <img src="/static/images/tbn.png" alt="TBN">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('ifm', 'iTV', 'Ohnggni Radio', '/static/images/itv.png')">
-                    <img src="/static/images/itv.png" alt="경인방송">
-                </button>
-
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('kbs_happy', 'KBS Happy', 'Ohnggni Radio', '/static/images/kbs_happy.png')">
-                    <img src="/static/images/kbs_happy.png" alt="KBS Happy">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('cbs_fm', 'CBS', 'Ohnggni Radio', '/static/images/cbs.png')">
-                    <img src="/static/images/cbs.png" alt="CBS Rainbow">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('kbs_cool', 'KBS Cool', 'Ohnggni Radio', '/static/images/kbs_cool.png')">
-                    <img src="/static/images/kbs_cool.png" alt="KBS Cool FM">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('kbs_3radio', 'KBS3', 'Ohnggni Radio', '/static/images/kbs3.png')">
-                    <img src="/static/images/kbs3.png" alt="KBS 3Radio">
-                </button>
-
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('sbs_power', 'SBS Power', 'Ohnggni Radio', '/static/images/sbs_power.png')">
-                    <img src="/static/images/sbs_power.png" alt="SBS Power FM">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('sbs_love', 'SBS Love', 'Ohnggni Radio', '/static/images/sbs_love.png')">
-                    <img src="/static/images/sbs_love.png" alt="SBS Love FM">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('mbc_fm', 'MBC', 'Ohnggni Radio', '/static/images/mbc_fm.png')">
-                    <img src="/static/images/mbc_fm.png" alt="MBC Radio">
-                </button>
-                <button type="button" class="channel-card" onclick="onChannelLogoClick('mbc_fm4u', 'MBC FM4U', 'Ohnggni Radio', '/static/images/mbc_fm4u.png')">
-                    <img src="/static/images/mbc_fm4u.png" alt="MBC FM4U">
-                </button>
-            </div>
+            <div class="channel-grid"></div>
 
             <!-- 모달 창 (테이블 내부에서만 표시) -->
             <div id="playModal" class="modal">
@@ -149,6 +97,7 @@
     <script src="/config.js"></script>
     <script src="/static/js/epg.js"></script>
     <script src="/static/js/script.js"></script>
+    <script src="/static/js/channels.js"></script>
     <script src="/static/js/player-ui.js"></script>
 </body>
 </html>
