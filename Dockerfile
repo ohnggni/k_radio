@@ -20,7 +20,12 @@ RUN apk add --no-cache \
     npm \
     fontconfig \
     nginx \
-    apache2-utils
+    apache2-utils \
+    libxml2-dev \
+    libxslt-dev \
+    gcc \
+    musl-dev \
+    python3-dev
 
 # Configure nano editor
 RUN git clone https://github.com/scopatz/nanorc.git /tmp/nanorc && \
