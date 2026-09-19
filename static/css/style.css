@@ -1,204 +1,347 @@
+:root {
+    --bg: #F7F2E0;
+    --ink: #3D3A33;
+    --ink-soft: #8A8474;
+    --surface: #FFFFFF;
+    --surface-dark: #33363E;
+    --accent: #E2572A;
+    --accent-soft: rgba(226, 87, 42, 0.14);
+    --line: rgba(61, 58, 51, 0.12);
+    --player-h: 128px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Jua', cursive;
-    background-color: #F7F2E0;
-}
-/* ✅ 컨테이너 전체를 좌측 정렬 */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
-/* ✅ 상태 표시바 + 테이블 + 오디오 플레이어 감싸는 wrapper */
-.player-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 250px; /* 🎯 UI 요소들을 고정된 너비 안에서 배치 */
-}
+/* ── 페이지 레이아웃 ─────────────────────────── */
 
-h4 {
-    max-width: 250px !important;
-    font-family: 'Jua', cursive;
-    /* 원하는 글꼴로 변경 가능 */
-    font-weight: bold;
-    text-align: left;
-    font-size: 26px;
-    color: #585858;
-    padding-bottom: 0px; /* 하단 패딩을 0으로 설정 */
-    margin-bottom: 4px; /* 하단 마진을 줄여 간격 조정 */
-}
-
-/* ✅ 테이블이 포함된 래퍼 */
-.table-wrapper {
-    position: relative; /* 🎯 모달이 테이블 내부에서 배치되도록 설정 */
-    width: 250px;
-    height: 230px;
-}
-
-/* ✅ 테이블 크기 유지 */
-.table {
-    width: 250px;
-    margin-left: 0;
-}
-
-/* ✅ 오디오 플레이어 크기 조정 */
-.audio-player {
+.page {
     width: 100%;
-    height: 30px;
-    margin-top: 2px;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: env(safe-area-inset-top, 0px) 16px 0 16px;
 }
 
-td img {
-    opacity: 0.7;
-    /* 이미지를 약간 투명하게 만듭니다. */
-}
-
-td img:hover {
-    opacity: 1.2;
-    /* 이미지를 약간 투명하게 만듭니다. */
-    border: 1px solid blue;
-    /* 파란색 border 추가 */
-    cursor: pointer;
-    /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
-}
-
-/* ✅ 상태 표시바 스타일 (여백 최소화, 정렬 조정) */
-.playing-info {
-    width: 250px !important; /* 가로 고정 */
-    max-width: 250px !important;
-    height: auto !important; /* 내용에 따라 자동 조정 */
-    background-color: #6c757d;
-    padding: 4px 8px !important; /* 내부 패딩 최소화 */
-    margin-bottom: 4px !important; /* 아래 여백 최소화 */
+.page-header {
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 16px;
+    margin: 8px 0 10px;
+    background-color: var(--surface-dark);
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(61, 58, 51, 0.18);
+}
+
+.brand {
+    font-family: 'Jua', cursive;
+    font-size: clamp(23px, 6.6vw, 29px);
+    line-height: 1.2;
+    color: white;
+    margin: 0;
+    padding-top: 2px;
+}
+
+.header-actions .icon-btn {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.header-actions .icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+.header-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.icon-btn {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+.icon-btn:hover {
+    background-color: var(--accent-soft);
+    color: var(--accent);
+}
+
+.icon-btn:active svg {
+    transform: rotate(90deg);
+}
+
+/* ── 채널 그리드 ─────────────────────────── */
+
+.table-wrapper {
+    position: relative;
+}
+
+.channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 7px;
+}
+
+.channel-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    height: 0;
+    border: none;
+    border-radius: 16px;
+    background: var(--surface);
+    box-shadow: 0 1px 2px rgba(61, 58, 51, 0.08);
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.channel-card img {
+    position: absolute;
+    top: 12%;
+    left: 12%;
+    width: 76%;
+    height: 76%;
+    object-fit: contain;
     border-radius: 8px;
 }
 
-/* ✅ 내부 요소 정리 (여백 최소화) */
-.playing-info .d-flex {
-    margin: 0 !important;
-    padding: 0 !important;
+.channel-card:active {
+    transform: scale(0.94);
 }
 
-/* ✅ 채널 로고 크기 조정 */
-#playingLogo {
-    width: 16px !important; /* 기존 14px → 16px로 크기 증가 */
-    height: 16px !important;
-    margin-right: 4px; /* 로고와 텍스트 간 여백 확보 */
+.channel-card.is-active {
+    box-shadow: 0 0 0 2.5px var(--accent), 0 4px 10px rgba(226, 87, 42, 0.25);
 }
 
-/* ✅ Broadcast Pin 아이콘 크기 조정 */
-#epgLogo {
-    width: 18px !important; /* 기존 14px → 18px */
-    height: 18px !important;
-    margin-right: 2px;
-}
+/* ── 채널 선택 모달 ─────────────────────────── */
 
-/* ✅ 텍스트 스타일 통일 */
-#playingChannel, .playing-status, #epg-info {
-    font-size: 12px !important;
-    color: #fff !important;
-    font-weight: bold;
-    text-align: left;
-}
-
-/* ✅ 음질 선택 (오른쪽 정렬) */
-.playing-info-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: auto !important;
-}
-
-.playing-info-right select {
-    font-size: 12px !important;
-    padding: 0px 4px !important;
-    height: 20px !important;
-    width: auto !important;
-    background-color: gray;
-    color: #F2F2F2;
-    border: none;
-}
-
-/* ✅ EPG 정보 올바르게 정렬 */
-.epg-container {
-    display: flex;
-    align-items: center;
-}
-
-#epg-info {
-    margin-left: 4px !important;
-    white-space: nowrap;
-}
-
-#qualitySelect {
-    font-size: 12px !important;
-    padding: 0px 4px !important;
-    height: 20px !important;
-    width: auto !important;
-    background-color: gray;
-    color: #F2F2F2;
-    border: none;
-}
-
-#qualitySelect option {
-    background-color: gray;
-    color: #F2F2F2;
-    font-size: 12px;
-}
-
-.bi-arrow-clockwise {
-    cursor: pointer; /* 마우스 커서를 손가락 모양으로 변경 */
-    transition: transform 0.2s; /* 클릭 시 회전 애니메이션 추가 */
-}
-.bi-arrow-clockwise:hover {
-    transform: rotate(90deg); /* 호버 시 회전 효과 */
-}
-
-/* ✅ 모달 창을 테이블 내부에서만 표시 */
-#playModal {
+.modal {
     display: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 250px;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
+    inset: 0;
+    background: rgba(51, 54, 62, 0.55);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    border-radius: 16px;
     align-items: center;
-    z-index: 100;
+    justify-content: center;
+    z-index: 10;
 }
 
-/* ✅ 모달 내부 스타일 */
-.modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 200px;
-}
-
-/* ✅ Play 버튼 */
-#playButton {
-    font-size: 18px;
-    padding: 10px 20px;
-    /*margin-top: 10px;*/
+.btn-play-modal {
+    font-family: 'Jua', cursive;
+    font-size: 21px;
+    padding: 12px 32px;
     border: none;
-    background-color: #007bff;
+    border-radius: 999px;
+    background-color: var(--accent);
     color: white;
     cursor: pointer;
-    border-radius: 5px;
-    width: 50%;
 }
 
-#playButton:hover {
-    background-color: #0056b3;
+.btn-play-modal:active {
+    transform: scale(0.96);
+}
+
+/* ── 오디오 엘리먼트 숨김 (재생은 계속 동작) ── */
+
+.audio-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── 하단 고정 커스텀 재생기 (헤더와 동일한 박스 기준) ── */
+
+.player-bar {
+    position: sticky;
+    bottom: 10px;
+    z-index: 20;
+    margin: 10px 0 0 0;
+    background-color: var(--surface-dark);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    padding: 9px 16px calc(7px + env(safe-area-inset-bottom, 0px));
+}
+
+.player-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-art {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.08);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.player-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.player-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+#playingChannel {
+    font-size: 19px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playing-status {
+    font-size: 14px;
+    color: var(--accent);
+    text-transform: capitalize;
+    flex-shrink: 0;
+}
+
+.player-epg {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    margin-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.quality-select {
+    flex-shrink: 0;
+    font-size: 14px;
+    padding: 6px 9px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    appearance: none;
+}
+
+.player-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 7px;
+}
+
+.mute-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.volume-slider {
+    flex: 1;
+    accent-color: var(--accent);
+    height: 20px;
+}
+
+.play-pause-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(226, 87, 42, 0.4);
+}
+
+.play-pause-btn:active {
+    transform: scale(0.94);
+}
+
+/* ── 큰 화면 (폴드 펼친 화면, 태블릿) 보정 ── */
+
+@media (min-width: 640px) {
+    .page {
+        max-width: 600px;
+    }
+
+    .channel-grid {
+        grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+        gap: 14px;
+    }
+}
+
+/* ── 매우 좁은 커버 스크린 보정 ── */
+
+@media (max-width: 400px) {
+    .brand {
+        font-size: clamp(16px, 5.4vw, 21px);
+    }
+
+    .page-header {
+        gap: 6px;
+        padding: 10px 12px;
+    }
+
+    .header-actions {
+        gap: 0;
+    }
+
+    .icon-btn {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (max-width: 340px) {
+    .channel-grid {
+        grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+        gap: 8px;
+    }
+
+    .player-art {
+        width: 38px;
+        height: 38px;
+    }
 }
