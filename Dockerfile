@@ -106,4 +106,4 @@ ENTRYPOINT ["/bin/sh", "-c", "\
     fi && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
-    nginx && /usr/sbin/crond -f -d 0 > /dev/null 2>&1 & cd /frontend/epg && /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml & node /frontend/server.js"]
+    nginx && /usr/sbin/crond -f -d 0 > /dev/null 2>&1 & cd /frontend/epg && (/usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml; /usr/bin/python3 -m epg2xml run --xmlfile=/frontend/epg/xmltv.xml) & node /frontend/server.js"]
