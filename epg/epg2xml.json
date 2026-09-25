@@ -30,6 +30,11 @@
         "Name": "Arirang",
         "ServiceId": "라디오 Arirang",
         "Category": "라디오"
+      },
+      {
+        "Name": "TBN(경인)",
+        "ServiceId": "라디오 TBN(경인)",
+        "Category": "라디오"
       }
     ]
   },
